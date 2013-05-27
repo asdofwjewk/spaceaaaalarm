@@ -15,32 +15,32 @@ Context mContext;
 		this.mContext = mContext;
 		db = mContext.openOrCreateDatabase("GAlarm.db", Context.MODE_PRIVATE, null);
 
-		//list// ¾Ë¶÷ ¸®½ºÆ® DB Å×ÀÌºí
+		//list// ï¿½Ë¶ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® DB ï¿½ï¿½ï¿½Ìºï¿½
 		//----------------------------------//
-		//  title | ¸ñÀûÁö| °Å¸®¼³Á¤ | ÄÑÁ®ÀÖ´ÂÁö »óÅÂ  //
+		//  title | ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½| ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  //
 		//----------------------------------//
 		db.execSQL("create table if not exists list(title text primary key, dst text, distance int, turn int, lat double, lng double)");
-		//db.execSQL("INSERT INTO list(title, dst, distance, turn) VALUES('¿ì¸®Áý', '´ë±¸', '200', '0')");
+		//db.execSQL("INSERT INTO list(title, dst, distance, turn) VALUES('ï¿½ì¸®ï¿½ï¿½', 'ï¿½ë±¸', '200', '0')");
 		
-		//º§¼Ò¸® & Áøµ¿ ¼³Á¤ DB Å×ÀÌºí
+		//ï¿½ï¿½ï¿½Ò¸ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DB ï¿½ï¿½ï¿½Ìºï¿½
 		db.execSQL("create table if not exists setting(bell text, biv int)");
 	}
 	
 	
-	//¸®½ºÆ® Å×ÀÌºí¿¡ µ¥ÀÌÅÍ Ãß°¡
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	public void appendList(String title, String dst, int distance, int turn, double lat, double lng) {
 		String sql = "insert into list(title, dst, distance, turn, lat, lng) values('"+ title +"', '" + dst + "', '"+ distance + "', '" + turn +"','"+lat+"','"+lng+"')";
 		db.execSQL(sql);
 	}
 	
-	//¸®½ºÆ® Å×ÀÌºíÀÇ ³»¿ëÀ» Ä¿¼­¿¡ ¹Þ¾Æ¿È
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
 	public Cursor fetchAllLists() {
 		Cursor cursor = null;
 		cursor = db.rawQuery("select * from list", null);
 		return cursor;
 	}
 	
-	//¸®½ºÆ® Å×ÀÌºí¿¡ µ¥ÀÌÅÍ »èÁ¦
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void deleteList(String title) {
 		String sql = "delete from list where title = '"+title+"'";
 		db.execSQL(sql);
@@ -52,16 +52,16 @@ Context mContext;
 		return cursor;
 	}
 	
-	//¸®½ºÆ® Å×ÀÌºíÀÇ ³»¿ëÀ» Ä¿¼­¿¡ ¹Þ¾Æ¿È
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
 	public Cursor fetchAllSet() {
 		Cursor cursor = null;
-		cursor = db.rawQuery("select * from list", null);
+		cursor = db.rawQuery("select * from bell", null);
 		return cursor;
 	}
 	
-	//¼Â Å×ÀÌºí¿¡ µ¥ÀÌÅÍ ¼öÁ¤
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void changeSet(String bell, String biv) {
-		//TODO µ¥ÀÌÅÍ º¯°æ
+		//TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		//db.execSQL(sql);
 	}
 	
